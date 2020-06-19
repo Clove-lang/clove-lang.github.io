@@ -269,10 +269,8 @@ footer {
                 <pre style="margin-bottom: -3em">
                     <code class="bash" style="text-align: left; width: fit-content; margin: auto;">
 # Install the repository and setup the project
-$ git clone https://github.com/Clove-lang/Clove.git
-$ cd ./Clove-master.zip
-$ tar -zxf Clove-master.zip
-$ cd Clove-master
+$ git clone 
+$ cd ./...
 $ npm install
 $ npm run build
                     </code>
@@ -424,6 +422,40 @@ class convert extends main {
 }
 
 var convert = new.Convert(23);
+                    </code>
+                  </pre>
+            </div>
+        </div>
+    </section>
+    <section class="primary section">
+        <div class="columns">
+            <div class="text column">
+                <div class="title">
+                    Optional ASPL integration
+                    <span class="emoji" data-emoji=""></span>
+                </div>
+                <div class="subtitle">
+                    Thanks to the ASPL project, we can produce clean Bytecode while compilation of Clove. With this additional target we can speed up the language's compilation. 
+                    <br><br>
+                    ASPL is meant to be lightweight and embedabble. Try to add it to your project. It will improve its quality immediately.                    
+                </div>
+                <a href="" class="button is-light" target="_blank">
+                    Learn about ASPL-VM
+                </a>
+            </div>
+            <div class="column">
+                <pre>
+                    <code class="asm">
+.def BUFFER_SIZE 16
+
+.label entry_addr
+    readc r0, (buffer + 0)
+    readc r1, (buffer + 4)
+    readc r2, (buffer + 8)
+    readc r3, (buffer + 12)
+                        
+.org 0x500
+.db buffer BUFFER_SIZE 0
                     </code>
                   </pre>
             </div>
