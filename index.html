@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>-The Clove programming language</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121584030-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-121584030-1');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Clove language | A class-based, statically typed programming language that covers todays need.">
+    <meta name="keywords" content="language, Github/Clove, Clove, Clove-language, Timo Sarkar">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/atom-one-dark.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <script src="//twemoji.maxcdn.com/2/twemoji.min.js?11.4"></script>
+    <style>
+        body {
+            position: relative;
+        }
+
+        .hero-head nav {
+            background: #fff !important;
+            box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero {
+            background: #f1f1f1;
+            background: #fff;
+        }
+
+        .section.code {
+            background: #1f1f1f;
+            color: #fff;
+        }
+
+        .section.primary {
+            background: #d81c1c;
+            background: #f1f1f1;
+            position: relative;
+        }
+
+        .primarya.section .title,
+        .primarya.section .subtitle,
+        .section.code .title,
+        .section.code .subtitle {
+            color: #fff;
+        }
+
+       
+
+        .footer .subtitle {
+            font-size: 1em;
+        }
+
+        .emoji img {
+            height: 0.8em;
+            margin-left: 3px;
+            margin-top: 0.3em;
+            margin-top: -3px;
+            vertical-align: middle;
+        }
+
+        .level-item .title {
+            color: #f1f1f1;
+        }
+
+        #slider {
+            position: relative;
+            text-align: center;
+        }
+
+        #slider.has-image code {
+            background-image: url('assets/images/hot_reload.png');
+            background-size: cover;
+            color: transparent;
+        }
+
+        #slider.has-image code span {
+            opacity: 0;
+        }
+
+        #slider img,
+        #slider pre {
+            text-align: left;
+        }
+
+        .fa-circle,
+        .fa-circle-thin {
+            border-radius: 50%;
+            box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            margin: auto;
+        }
+
+        pre {
+            background: transparent;
+            margin: 0;
+            padding: 0;
+        }
+
+        img.screenshot {
+            box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.5);
+        }
+
+        code.hljs {
+            font-family: Consolas, "Liberation Mono", Menlo, Monaco, Lucida Console,
+                Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono,
+                Courier New, monospace, serif;
+            line-height: 1.3em;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+            overflow-x: auto;
+            padding: 0 1em;
+            -webkit-font-smoothing: subpixel-antialiased;
+        }
+
+        .section .button {
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        .hljs-keyword {
+            font-weight: normal;
+        }
+
+        .column.text {
+            padding-top: 2em;
+        }
+
+        .column.text .title {
+            padding-bottom: 0.5em;
+        }
+
+        .readme {
+            background: #f1f1f1;
+            color: #6a6a6a;
+            font-size: 0.8em;
+            padding: 5px;
+        }
+
+        
+
+        @media(max-width: 768px) {
+            .readme span {
+                display: none;
+            }
+        }
+
+footer {
+  margin-top: 4em;
+  padding: 20px 0 40px 0;
+
+  color: var(--gray-20);
+  text-align: center;
+  text-shadow: 0 1px 1px var(--darker);
+}
+
+footer a {
+  color: var(--link-hover);
+}
+
+footer a:hover {
+  color: var(--link);
+}
+
+footer {
+    padding: 20px 20px 40px 20px;
+  }
+    </style>
+</head>
+
+<body>
+    <section class="readme">
+        <div class="container has-text-centered">
+            <p>
+                Clove v.2.1.3 is out now!
+                <span>Including now a multithreading system</span>
+                <a href="" target="_blank">
+                    Read more
+                </a>.
+            </p> 
+        </div>
+    </section>
+    <section class="hero">
+        <div class="hero-head" style="padding-bottom: 1em">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                        data-target="navbarBasicExample">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item" href="" target="_blank">
+                            Docs
+                        </a>
+                        <a class="navbar-item" target="_blank" href="">
+                            Examples
+                        </a>
+
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <div class="navbar-link" target="_blank">
+                                <span class="emoji" data-emoji=""></span>
+                                &nbsp;Ecosystem
+                            </div>
+
+                            <div class="navbar-dropdown">
+                               
+                                <a class="navbar-item" target="_blank" href="">
+                                    Client-side support
+                                </a>
+                                <a class="navbar-item" target="_blank"
+                                    href="">
+                                    From Backend to Frontend
+                                </a>
+                                <a class="navbar-item" target="_blank" href="">
+                                    MongoDB support
+                                </a>
+                                <hr class="navbar-divider" />
+                                <a class="navbar-item" target="_blank"
+                                    href="">
+                                    Packaging index
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <div class="buttons">
+                                <a class="button is-black" href="" target="_blank">
+                                    <span class="icon is-small">
+                                        <i class="fab fa-github"></i>
+                                    </span>
+                                    <span>Github</span>
+                                </a>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="hero-body has-text-centered">
+            <div class="container">
+                <div class="title" style="margin-bottom: 0">
+                    <img src="assets/images/clove-banner.png" style="max-height: 5em; height: 300px;" alt="Clove" />
+                </div>
+               
+                <br>
+              
+                <br><br>
+                <span style="font-size:0.8em; font-weight: 900; text-transform: uppercase;">Install:</span>
+                <pre style="margin-bottom: -3em">
+                    <code class="bash" style="text-align: left; width: fit-content; margin: auto;">
+# Install the repository and setup the project
+$ git clone 
+$ cd ./...
+$ npm install
+$ npm run build
+                    </code>
+                </pre>
+               
+            </div>
+        </div>
+    </section>
+    <section class="primary section">
+        <div class="columns">
+            <div class="column">
+                <pre>
+              <code class="dart">
+import 'http' from index;
+import 'system' from index;
+
+@getter('http://:localhost:8000/')
+class host extends server {
+  func host ('http') = {
+      system.host(port:8000);
+  }
+}
+
+@setter('/app/hello_world!') = {
+  system.println('hello_world!');
+  system.call(host);
+}
+
+              </code>
+            </pre>
+            </div>
+            <div class="text column">
+                <div class="title">
+                    Huge ecosystem
+                </div>
+                <div class="subtitle">
+                    Clove comes served with a huge ecosystem powered by the core development team.
+                </div>
+                <div class="subtitle">
+                    The clove language is designed in the need of an extensible language. In clove we provide an easy system that helps us to implement and extend the runtime easily.
+                </div>
+                <a href="" target="_blank" class="button is-dark">
+                    Learn more...
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="primary section">
+        <div class="columns">
+            <div class="text column">
+                <div class="title">
+                    Portable and reliable
+                </div>
+                <div class="subtitle">
+                    Clove under the hood
+                    <br><br>
+                    The main need that clove should cover was, to be portable and lightweight. We easily could to  
+                </div>
+                <a href=""
+                    class="button" target="_blank">
+                    Take a look on Clove...</a>
+            </div>
+            <div id="slider" class="column">
+                
+                <pre>
+              <code class="dart">
+import 'system' from index;
+import 'thread' from index;
+
+class thread extends main{
+    func thread(status : string) = {
+        var thread = thread.awake();
+        system.println(thread.status);
+    }
+}
+
+// Result: "Thread status: running"
+              </code>
+            </pre>
+               
+            </div>
+        </div>
+    </section>
+    
+    <section class="primary section">
+        <div class="columns">
+            <div class="column">
+                <pre>
+              <code class="dart">
+Line:03| import 'system' from index;
+Line:04| 
+Line:05| class error extends main {
+Line:06|     func foo(int : rand) = {
+Line:07|       math.rand();
+Line:08|     }
+Line:09|     var foo = Foo.new()
+Line:10|     foo.someRandomMethod
+Line:11| }
+           '${09-10:^^-- Foo does not implement 
+                         method someRandomMethod.}'
+              </code>
+            </pre>
+            </div>
+            <div class="text column">
+                <div class="title">
+                    Clean error handling
+                </div>
+                <div class="subtitle">
+                    No Runtime Exceptions. 
+
+                    Clove uses type inference to detect corner cases and give friendly hints. SarkarLab switched to Clove about one year ago, and 25k+ lines later, they still have not had to scramble to fix a confusing runtime exception in production.                 </div>
+                <div class="subtitle">
+                </div>
+                <a href="" target="_blank" class="button is-dark">
+                    Learn more...
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="primary section">
+        <div class="columns">
+            <div class="text column">
+                <div class="title">
+                    High performance
+                    <span class="emoji" data-emoji=""></span>
+                </div>
+                <div class="subtitle">
+                    Clove is stable. And thanks to its statically typed core, we can compete right now with other full stack languages such as Dart, Elm or Ruby.
+                    <br><br>
+                    Moreover it is built on a cross-target interpeter, which means it can compile to multiple languages such as C, JavaScript or C++. 
+                    
+                </div>
+                <a href="" class="button is-light" target="_blank">
+                    Learn about performance
+                </a>
+            </div>
+            <div class="column">
+                <pre>
+                    <code class="dart">
+import 'math' from index;
+import 'system' from index;
+
+class convert extends main {
+    func warmup(temperature) {
+        var faren = 9/5 * temperature + 32;
+        return faren;
+        final warmup();
+    }
+}
+
+var convert = new.Convert(23);
+                    </code>
+                  </pre>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="page">
+          <div class="main-column">
+          <p>Clove is officially hosted
+            <a href="https://github.com/clove-lang/clove">on GitHub</a>
+            &mdash; Made with &#x2764; by
+            <a href="http://timo-cmd.github.io">Timo Sarkar</a>.
+          </p>
+          <div class="main-column">
+        </div>
+      </footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/bash.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/dart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        $(function () {
+        //     $('.has-dropdown').click(function() {
+        //         $(this).toggleClass('is-active');
+        //     });
+
+            $('.navbar-burger').click(function () {
+                $('.navbar-menu').toggleClass('is-active');
+            });
+
+            $('.year').text(new String(new Date().getFullYear()));
+
+            $('.emoji').each(function () {
+                var html = twemoji.parse($(this).attr('data-emoji'));
+                $(this).html(html);
+            });
+
+            $.getJSON('', function (repo) {
+                $('.stargazers').text(repo.stargazers_count.toLocaleString());
+            });
+
+            var pubUrl = '';
+            pubUrl += '';
+
+            $.getJSON(pubUrl, function (res) {
+                var versions = res.versions;
+                var latestVersion = versions[versions.length - 1];
+                $('.pub-version').text(latestVersion.version);
+            });
+
+            var travisUrl = '/';
+            travisUrl += '';
+            $.get(travisUrl, function (res) {
+                var status = res.querySelectorAll('g text')[2].textContent;
+                var buildClass;
+                if (status.indexOf('pass') !== -1) {
+                    buildClass = 'is-primary';
+                } else if (status.indexOf('error') !== -1 || status.indexOf('fail') !== -1) {
+                    buildClass = 'is-danger';
+                } else {
+                    buildClass = 'is-light';
+                }
+
+                $('.build-status').addClass(buildClass).text(status);
+            }, 'xml');
+
+            var sliderButtons = $('#slider .fa-circle');
+            var sliderTimeout;
+            sliderButtons.click(sliderToggle);
+            sliderTimeout = setTimeout(sliderToggle, 5000);
+
+            
+        });
+    </script>
+</body>
+
+</html>
